@@ -7,6 +7,7 @@
 <template id="contacts_followup" name="Portal Contact Form">
     <t t-call="portal.portal_layout">
         <div id="wrap" class="o_my_contact_form container">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
             <t name="placeholder1"/>
             <section id="contact_title" class="row">
                 <div class="col-md-12">
@@ -19,7 +20,8 @@
                     </h1>
                 </div>
             </section>
-            <t t-call="website_portal_contact.form_breadcrumb"/>
+            <t t-call="portal.portal_searchbar"/>
+<!--            <t t-call="website_portal_contact.form_breadcrumb"/>-->
             <t name="placeholder2"/>
             <t t-call="website_portal_contact.form_actions"/>
             <t name="placeholder3"/>

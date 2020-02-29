@@ -37,6 +37,14 @@ class WebsiteAccount(CustomerPortal):
 
         return domain
 
+    def _prepare_portal_layout_values(self):
+        values = super(WebsiteAccount, self)._prepare_portal_layout_values()
+        ticket_count = request.env["res.partner"].search_count(
+            self._contacts_domain()
+        )
+        values['contact_count'] = ticket_count
+        return values
+
     def _prepare_contacts_values(
         self, page=1, date_begin=None, date_end=None, search=""
     ):
@@ -108,17 +116,17 @@ class WebsiteAccount(CustomerPortal):
         )
         return result
 
-    @route()
-    def account(self, *args, **kwargs):
-        result = super(WebsiteAccount, self).account(*args, **kwargs)
-        result.qcontext.update(
-            {
-                "contact_count": request.env["res.partner"].search_count(
-                    self._contacts_domain()
-                )
-            }
-        )
-        return result
+    # @route()
+    # def account(self, *args, **kwargs):
+    #     result = super(WebsiteAccount, self).account(*args, **kwargs)
+    #     result.qcontext.update(
+    #         {
+    #             "contact_count": request.env["res.partner"].search_count(
+    #                 self._contacts_domain()
+    #             )
+    #         }
+    #     )
+    #     return result
 
     @route(
         ["/my/contacts", "/my/contacts/page/<int:page>"],
@@ -157,7 +165,7 @@ class WebsiteAccount(CustomerPortal):
         """Read a contact form."""
         values = self._prepare_portal_layout_values()
         values.update(
-            {"contact": contact, "fields": self._contacts_fields(),}
+            {"contact": contact, "fields": self._contacts_fields(), }
         )
         return request.render(
             "website_portal_contact.contacts_followup", values
