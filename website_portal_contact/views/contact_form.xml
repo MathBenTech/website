@@ -20,8 +20,10 @@
                     </h1>
                 </div>
             </section>
-            <t t-call="portal.portal_searchbar"/>
-<!--            <t t-call="website_portal_contact.form_breadcrumb"/>-->
+<!--            <t t-call="portal.portal_searchbar">-->
+<!--                <t t-set="title">Contact</t>-->
+<!--            </t>-->
+            <t t-call="website_portal_contact.form_breadcrumb"/>
             <t name="placeholder2"/>
             <t t-call="website_portal_contact.form_actions"/>
             <t name="placeholder3"/>
@@ -66,17 +68,18 @@
                         My Contacts
                     </a>
                 </li>
-                <li>
-                    <t t-if="contact.id">
-                        <t t-esc="contact.name"/>
-                    </t>
-                    <t t-if="not contact.id">
-                        New Contact
-                    </t>
-                </li>
+<!--                <li>-->
+<!--                    <t t-if="contact.id">-->
+<!--                        <t t-esc="contact.name"/>-->
+<!--                    </t>-->
+<!--                    <t t-if="not contact.id">-->
+<!--                        New Contact-->
+<!--                    </t>-->
+<!--                </li>-->
             </ol>
         </div>
     </div>
+
 </template>
 
 <template id="form_actions" name="Portal Contact Form Actions">
