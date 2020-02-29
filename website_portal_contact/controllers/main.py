@@ -4,21 +4,23 @@
 import logging
 
 from odoo import _
-from odoo.addons.website_portal_v10.controllers.main import (
-    WebsiteAccount as PortalController,
-)
+# from odoo.addons.portal.controllers.main import (
+#     WebsiteAccount as PortalController,
+# )
+from odoo.addons.portal.controllers.portal import CustomerPortal
 from odoo.exceptions import ValidationError
 from odoo.http import local_redirect, request, route
 
 _logger = logging.getLogger(__name__)
 
 
-class WebsiteAccount(PortalController):
+class WebsiteAccount(CustomerPortal):
     def _contacts_domain(self, search=""):
         """Get user's contacts domain."""
-        domain = request.env.ref(
-            "website_portal_contact.rule_edit_own_contacts"
-        ).domain
+        # domain = request.env.ref(
+        #     "website_portal_contact.rule_edit_own_contacts"
+        # ).domain_force
+        domain = []
 
         # To edit yourself you have /my/account
         domain += [("id", "!=", request.env.user.partner_id.id)]
@@ -99,7 +101,7 @@ class WebsiteAccount(PortalController):
 
     def _contacts_clean_values(self, values):
         """Set values to a write-compatible format"""
-        result = {k: v or False for k, v in values.iteritems()}
+        result = {k: v or False for k, v in values.items()}
         result.setdefault("type", "contact")
         result.setdefault(
             "parent_id", request.env.user.commercial_partner_id.id
@@ -127,7 +129,7 @@ class WebsiteAccount(PortalController):
         self, page=1, date_begin=None, date_end=None, search=""
     ):
         """List all of your contacts."""
-        return request.website.render(
+        return request.render(
             "website_portal_contact.portal_my_contacts",
             self._prepare_contacts_values(page, date_begin, date_end, search),
         )
@@ -157,7 +159,7 @@ class WebsiteAccount(PortalController):
         values.update(
             {"contact": contact, "fields": self._contacts_fields(),}
         )
-        return request.website.render(
+        return request.render(
             "website_portal_contact.contacts_followup", values
         )
 

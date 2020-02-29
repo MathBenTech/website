@@ -12,7 +12,7 @@
     "license": "AGPL-3",
     "depends": ["website_portal_contact",],
     "data": [
-        "security/ir.rule.csv",
+        # "security/ir.rule.csv",
         "views/assets.xml",
         "views/contact_address.xml",
         "views/layout.xml",

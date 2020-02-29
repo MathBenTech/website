@@ -10,10 +10,10 @@
     "license": "LGPL-3",
     "application": False,
     "installable": True,
-    "depends": ["website_portal_v10",],
+    "depends": ["portal"],
     "data": [
-        "security/ir.model.access.csv",
-        "security/ir.rule.csv",
+        # "security/ir.model.access.csv",
+        # "security/ir.rule.csv",
         "views/assets.xml",
         "views/contact_form.xml",
         "views/contact_tree.xml",

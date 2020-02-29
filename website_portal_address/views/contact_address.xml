@@ -15,9 +15,16 @@
                     t-att-name="field_name"
                     t-att-type="'email' if field_name == 'email' else 'select' if field_name in ('country_id', 'state_id') else ('tel' if field_name in ('phone', 'mobile') else 'text')"
                     t-att-required="field_description['required'] and 'required'"
-                    t-att-title="field_description['help'] or False"
                     t-att-value="contact[field_name]"
                     class="form-control"/>
+<!--                <input-->
+<!--                    t-att-id="field_name"-->
+<!--                    t-att-name="field_name"-->
+<!--                    t-att-type="'email' if field_name == 'email' else 'select' if field_name in ('country_id', 'state_id') else ('tel' if field_name in ('phone', 'mobile') else 'text')"-->
+<!--                    t-att-required="field_description['required'] and 'required'"-->
+<!--                    t-att-title="field_description['help'] or False"-->
+<!--                    t-att-value="contact[field_name]"-->
+<!--                    class="form-control"/>-->
             </div>
         </div>
         </t>
@@ -31,7 +38,7 @@
                 <label class="col-sm-3"></label>
                 <div class="col-sm-9">
                     <label class="radio-inline">
-                        <input type="radio" id="radio212_contact" 
+                        <input type="radio" id="radio212_contact"
                                t-att-checked='"checked" if contact["type"] == "contact" else None'
                                name="type" value="contact" checked="checked"/>Contact
                     </label>
@@ -46,7 +53,7 @@
                                name="type" value="delivery"/>Shipping address
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" id="radio212_other" 
+                        <input type="radio" id="radio212_other"
                                t-att-checked='"checked" if contact["type"] == "other" else None'
                                name="type" value="other"/>Other address
                     </label>
