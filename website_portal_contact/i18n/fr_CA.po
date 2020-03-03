@@ -98,7 +98,7 @@ msgstr "Rechercher"
 #. module: website_portal_contact
 #: model_terms:ir.ui.view,arch_db:website_portal_contact.search
 msgid "Search..."
-msgstr "Rechercher…"
+msgstr "Rechercher..."
 
 #. module: website_portal_contact
 #: model_terms:ir.ui.view,arch_db:website_portal_contact.portal_my_contacts
